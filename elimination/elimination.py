@@ -26,5 +26,22 @@ def encode(data):
     return result.strip()
 
 
-def decode(input):
-    return input
+def decode(indata):
+    result = []
+    # Create empty slots
+    slots = [x for x in range(len(indata.split(' ')))]
+    num_free_slots = len(indata.split(' ')) - len(result)
+    data = str(indata).replace(' ', '')
+    bit_start = 0
+    while num_free_slots > 0:
+        bits_required = math.ceil(math.log2(num_free_slots))
+        if bits_required:
+            bits = data[bit_start:bit_start+bits_required]
+            bit_start += bits_required
+        else:
+            bits = '0'
+        index = int(bits, 2)
+        result.append(slots[index])
+        del slots[index]
+        num_free_slots = len(indata.split(' ')) - len(result)
+    return result
