@@ -27,6 +27,11 @@ def encode(data):
 
 
 def decode(indata):
+    """
+    Takes a string of binary index data and decodes to the original values
+    :param indata: string of binary
+    :return:
+    """
     result = []
     # Create empty slots
     slots = [x for x in range(len(indata.split(' ')))]
